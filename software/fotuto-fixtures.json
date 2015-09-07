@@ -1,0 +1,50 @@
+[
+	{
+		"fields": {
+			"description": "Simple Alarm System 01",
+			"slug": "home-alarm",
+			"title": "Home Alarm"
+		},
+		"model": "windows.window",
+		"pk": 1
+	},
+	{
+		"fields": {
+			"y": 0,
+			"x": 0,
+			"window": 1,
+			"name": "Alarm",
+			"vars": [
+				1
+			]
+		},
+		"model": "mimics.mimic",
+		"pk": 1
+	},
+	{
+		"fields": {
+			"description": "",
+			"address": "/dev/ttyACM2",
+			"active": true,
+			"model": "01",
+			"slug": "alarm-controler",
+			"name": "Alarm Controler"
+		},
+		"model": "vars.device",
+		"pk": 1
+	},
+	{
+		"fields": {
+			"units": "",
+			"name": "Magnetic Contactor",
+			"var_type": "binary",
+			"value": 0.0,
+			"device": 1,
+			"active": true,
+			"slug": "reeds-witch",
+			"description": ""
+		},
+		"model": "vars.var",
+		"pk": 1
+	}
+]
