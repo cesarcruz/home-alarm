@@ -9,6 +9,7 @@ const int REED_SWITCH_1 = 7;      // Magnetic contact
 const int LED_OPEN_DOOR_1 = 8;    // LED to show door opened/closed
 const int LED_ACTIVE = 13;        // LED to show when alarm is active
 const int BUTTON_ACTIVATION = 2;  // Button to show when alarm is active
+const int SOUND_SIGNAL = 9;       // Buzzer
 
 int door_sensor = 0;              // will be used to store the state of the door (REED_SWITCH_1 input pin)
 int old_door_sensor = 0;          // this variable stores the previous value of door_sensor
@@ -24,6 +25,8 @@ void setup() {
   pinMode(BUTTON_ACTIVATION, INPUT); // Set digital pin as input
   pinMode(LED_ACTIVE, OUTPUT);       // Set digital pin as output
   
+  pinMode(SOUND_SIGNAL, OUTPUT);     // Set digital pin as output
+  
   // PC output
   Serial.begin(9600);                // initialize serial communication at 9600 bits per second
 }
@@ -37,6 +40,9 @@ void loop() {
     // door_sensor -> LOW: Closed
     if (door_sensor == 1) {
       digitalWrite(LED_OPEN_DOOR_1, HIGH);  // Turn LED ON
+      if (active_state == 1) { // Since alarm is active turn on sound signal
+        digitalWrite(SOUND_SIGNAL, HIGH);
+      }
     } else {  // If door is closed turn off led
       digitalWrite(LED_OPEN_DOOR_1, LOW);  // Turn LED OFF
     }
@@ -58,5 +64,6 @@ void loop() {
     digitalWrite(LED_ACTIVE, HIGH); // turn LED ON
   } else {
     digitalWrite(LED_ACTIVE, LOW);
+    digitalWrite(SOUND_SIGNAL, LOW); // Stop sound
   }
 }
